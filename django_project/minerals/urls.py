@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='minerals_home'),
     path('detail/<int:pk>/', views.mineral_detail, name='mineral_detail'),
+    path('detail/random/', views.random_mineral, name='random_mineral'),
 
 ]
 
