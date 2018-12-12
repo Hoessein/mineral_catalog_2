@@ -21,6 +21,7 @@ class Mineral(models.Model):
     refractive_index = models.CharField(max_length=500)
     crystal_habit = models.CharField(max_length=500)
     specific_gravity = models.CharField(max_length=500)
+    group = models.CharField(max_length=500)
 
     def __str__(self):
         return self.name
@@ -50,7 +51,8 @@ class Mineral(models.Model):
                         optical_properties=mineral.get('optical properties', ""),
                         refractive_index=mineral.get('refractive index', ""),
                         crystal_habit=mineral.get('crystal habit', ""),
-                        specific_gravity=mineral.get('specific gravity', "")
+                        specific_gravity=mineral.get('specific gravity', ""),
+                        group=mineral.get('group')
                     ).save()
                 except KeyError:
                     continue

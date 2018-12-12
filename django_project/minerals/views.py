@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 
+import json
+
 import random
 
 
@@ -14,7 +16,11 @@ def home(request):
 
 def mineral_detail(request, pk):
     mineral = Mineral.objects.filter(pk=pk)
-    return render(request, 'minerals/detail.html', {'mineral': mineral})
+
+    with open('minerals.json', encoding='utf8') as file:
+        data = json.load(file)
+
+    return render(request, 'minerals/detail.html', {'mineral': mineral, 'data': data})
 
 
 def random_mineral(request):
