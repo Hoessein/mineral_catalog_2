@@ -29,4 +29,12 @@ class CourseModelTests(TestCase):
             specific_gravity='specific gravity',
             group='group'
     )
-        self.assertEqual(mineral.name, 'namadfadfe')
+        self.assertEqual(mineral.name, 'name')
+
+    def test_json_to_db(self):
+        Mineral.json_to_db()
+        min = Mineral.objects.count()
+        self.assertEqual(min, 874)
+
+
+
