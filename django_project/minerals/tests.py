@@ -77,4 +77,5 @@ class MineralsViewsTests(TestCase):
 
     def test_random_detail_view(self):
         resp = self.client.get(reverse('minerals:random_mineral'))
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.status_code, 302)
+        self.assertRedirects()

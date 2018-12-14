@@ -1,9 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from django.http import HttpResponseRedirect
-
-import json
-
-import random
+from django.http import HttpResponseRedirect, Http404
 
 
 from .models import Mineral
@@ -16,8 +12,10 @@ def home(request):
 
 def mineral_detail(request, pk):
     mineral = Mineral.objects.filter(pk=pk)
-    return render(request, 'minerals/detail.html', {'mineral': mineral})
-
+    if mineral.exists():
+        return render(request, 'minerals/detail.html', {'mineral': mineral})
+    else:
+        raise Http404
 
 def random_mineral(request):
     """"Gives back a random object."""
