@@ -16,11 +16,7 @@ def home(request):
 
 def mineral_detail(request, pk):
     mineral = Mineral.objects.filter(pk=pk)
-
-    with open('minerals.json', encoding='utf8') as file:
-        data = json.load(file)
-
-    return render(request, 'minerals/detail.html', {'mineral': mineral, 'data': data})
+    return render(request, 'minerals/detail.html', {'mineral': mineral})
 
 
 def random_mineral(request):
