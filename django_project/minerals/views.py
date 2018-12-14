@@ -21,11 +21,8 @@ def mineral_detail(request, pk):
     else:
         raise Http404
 
+
 def random_mineral(request):
     """"Gives back a random object"""
     random_mineral = Mineral.objects.order_by('?').first().pk
     return HttpResponseRedirect(reverse('minerals:mineral_detail', args=(random_mineral,)))
-
-
-if __name__ == '__main__':
-    Mineral.json_to_db()

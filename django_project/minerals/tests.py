@@ -1,6 +1,5 @@
 from django.urls import reverse
 from django.test import TestCase
-from django.utils import timezone
 
 from .models import Mineral
 
@@ -64,7 +63,6 @@ class MineralsViewsTests(TestCase):
             specific_gravity='specific gravity',
             group='group'
         )
-
 
     def test_home_view(self):
         """tests the home view"""

@@ -25,3 +25,5 @@ class Mineral(models.Model):
 
     def __str__(self):
         return self.name
+
+    # Data migration is made in the following file ----> 0002_auto_20181214_1507.py
