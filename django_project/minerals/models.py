@@ -26,4 +26,11 @@ class Mineral(models.Model):
     def __str__(self):
         return self.name
 
-    # Data migration is made in the following file ----> 0002_auto_20181214_1507.py
+    # run following three commands in the shell:
+    # 1: `python manage.py makemigrations minerals`
+    # 2: `python manage.py makemigrations --empty minerals`
+    # 3: `python migrate'
+
+    # A data migration is made in the following file ----> 0002_auto_20181214_1507.py
+    # The database will be populated with the data from 'minerals.json'
+
