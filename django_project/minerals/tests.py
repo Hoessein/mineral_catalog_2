@@ -5,7 +5,7 @@ from django.utils import timezone
 from .models import Mineral
 
 
-class CourseModelTests(TestCase):
+class MineralModelTests(TestCase):
     def test_course_creation(self):
         mineral=Mineral.objects.create(
             name='name',
@@ -37,4 +37,17 @@ class CourseModelTests(TestCase):
         self.assertEqual(min, 874)
 
 
+class MineralsViewsTests(TestCase):
 
+    def test_home_view(self):
+        resp = self.client.get(reverse('minerals:minerals_home'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed('minerals/index.html')
+
+    def test_detail_view(self):
+        resp = self.client.get(reverse('minerals:minerals_detail', kwargs={'pk': self.course.pk}))))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_random_detail_view(self):
+        resp = self.client.get(reverse('minerals:random_mineral'))
+        self.assertEqual(resp.status_code, 200)
