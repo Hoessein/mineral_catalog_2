@@ -75,7 +75,10 @@ class MineralsViewsTests(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/detail.html')
 
+    def test_detail_404(self):
+        resp = self.client.get(reverse('minerals:mineral_detail', kwargs={'pk': 98432}))
+        self.assertEqual(resp.status_code, 404)
+
     def test_random_detail_view(self):
         resp = self.client.get(reverse('minerals:random_mineral'))
-        self.assertEqual(resp.status_code, 302)
-        self.assertRedirects()
+        self.assertRedirects(resp, '/detail/1/', status_code=302, target_status_code=200)
