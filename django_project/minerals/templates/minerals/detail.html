@@ -9,88 +9,133 @@
   <h1 class="mineral__name">{{ min.name }}</h1>
   <div class="mineral__image-bg">
     <img class="mineral__image" src="{% static '/minerals/images/'%}{{ min.name }}.jpg">
-
     <p class="mineral__caption">{{ min.image_caption }}</p>
   </div>
 <div>
+
   <div class="mineral__table-container">
     <table class="mineral__table">
+
       <tr>
+        {% if min.category %}
         <td class="mineral__category">Category</td>
         <td>{{ min.category|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.formula %}
         <td class="mineral__category">Formula</td>
         <td class="mineral__formula">{{ min.formula }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.unit_cell %}
         <td class="mineral__category">Unit Cell</td>
         <td>{{ min.unit_cell }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.color %}
         <td class="mineral__category">Color</td>
         <td>{{ min.color }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+          {% if min.crystal_habit %}
         <td class="mineral__category">Crystal Habit</td>
         <td>{{ min.crystal_habit }}</td>
+          {% endif %}
       </tr>
-          <tr>
+
+      <tr>
+          {% if min.mohs_scale_hardness %}
         <td class="mineral__category">Mohs Scale Hardness</td>
         <td>{{ min.mohs_scale_hardness }}</td>
+          {% endif %}
       </tr>
+
       <tr>
+          {% if min.struntz_classification %}
         <td class="mineral__category">Strunz Classification</td>
         <td>{{ min.strunz_classification }}</td>
+          {% endif %}
       </tr>
+
       <tr>
-        <td class="mineral__category">Color</td>
-        <td>{{ min.color }}</td>
-      </tr>
-      <tr>
-        <td class="mineral__category">Crystal Habit</td>
-        <td>{{ min.crystal_habit }}</td>
-      </tr>
-      <tr>
+        {% if min.group %}
         <td class="mineral__category">Group</td>
         <td>{{ min.group }}</td>
+        {% endif %}
       </tr>
+
+
       <tr>
+        {% if min.crystal_system %}
         <td class="mineral__category">Crystal System</td>
         <td>{{ min.crystal_system|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.crystal_symmetry %}
         <td class="mineral__category">Crystal Symmetry</td>
         <td>{{ min.crystal_symmetry|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.cleavage %}
         <td class="mineral__category">Cleavage</td>
         <td>{{ min.cleavage|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.luster %}
         <td class="mineral__category">Luster</td>
         <td>{{ min.luster|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.streak %}
         <td class="mineral__category">Streak</td>
         <td>{{ min.streak|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.diaphaneity %}
         <td class="mineral__category">Diaphaneity</td>
         <td>{{ min.diaphaneity|title }}</td>
+        {% endif %}
       </tr>
+
       <tr>
+        {% if min.optical_properties %}
         <td class="mineral__category">Optical Properties</td>
         <td>{{ min.optical_properties|title }}</td>
+        {% endif %}
       </tr>
+
      <tr>
+        {% if min.refractive_index %}
         <td class="mineral__category">Refractive Index</td>
         <td>{{ min.refractive_index|title }}</td>
+        {% endif %}
       </tr>
+
      <tr>
+        {% if min.specific_gravity %}
         <td class="mineral__category">Specific Gravity</td>
         <td>{{ min.specific_gravity|title }}</td>
+        {% endif %}
       </tr>
+
     </table>
   </div>
 </div>
