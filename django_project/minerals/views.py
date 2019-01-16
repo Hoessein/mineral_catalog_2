@@ -8,8 +8,8 @@ from .models import Mineral
 def home(request):
     """Will show all the minerals on the homepage
     renders index.html and stores all the objects to 'mineral' """
-    minerals = Mineral.objects.filter()
-    return render(request, 'minerals/index.html', {'minerals': minerals})
+    minerals = Mineral.objects.filter(name__istartswith='a')
+    return render(request, 'minerals/layout.html', {'minerals': minerals})
 
 
 def mineral_detail(request, pk):
@@ -21,8 +21,17 @@ def mineral_detail(request, pk):
     else:
         raise Http404
 
-
 def random_mineral(request):
     """"Gives back a random object"""
     random_mineral = Mineral.objects.order_by('?').first().pk
     return HttpResponseRedirect(reverse('minerals:mineral_detail', args=(random_mineral,)))
+
+def alphabet(request, letter):
+    """something"""
+    alpha = Mineral.objects.filter(name__istartswith=letter)
+    alphabet = [letter for letter in 'abcdefghijklmnopqrstuvwxyz']
+    return render(request, 'minerals/index.html', {'alpha': alpha, 'alphabet': alphabet})
+
+
+
+

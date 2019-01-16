@@ -3,10 +3,17 @@
 {% load static from staticfiles %}
 
 {% block content %}
-<div>
+<div class="grid-100">
+    <ul class="minerals__container">
+  {% for letter in alphabet %}
+    <td><a href="{% url 'minerals:alphabet' letter %}"  >{{ letter }}</a></td>
+  {% endfor %}
+        </ul>
+
+</div>
 <div class="grid-100">
   <ul class="minerals__container">
-    {% for mineral in minerals %}
+    {% for mineral in alpha %}
     <li class="minerals__item">
       <a class="minerals__anchor" href="{% url 'minerals:mineral_detail' pk=mineral.pk %}">{{ mineral }}</a>
     </li>
