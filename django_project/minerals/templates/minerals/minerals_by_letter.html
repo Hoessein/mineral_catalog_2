@@ -6,7 +6,7 @@
 
 <div class="grid-100">
   <ul class="minerals__container">
-    {% for mineral in default_homepage_mineral %}
+    {% for mineral in mineral_by_letter %}
     <li class="minerals__item">
       <a class="minerals__anchor" href="{% url 'minerals:mineral_detail' pk=mineral.pk %}">{{ mineral }}</a>
     </li>

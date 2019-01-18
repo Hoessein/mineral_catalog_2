@@ -24,10 +24,22 @@
         <h1 class="logo__name text-centered">Macky's Minerals</h1>
       </a>
       <p class="logo__text text-centered">Did you know that the study of minerals is called mineralogy?</p>
+        <div>
+            <form method="GET" action="{% url 'minerals:search_mineral' %}">
+              {{ form.search_box }}
+              <input type="submit" name="" class="button" value="">
+            </form>
+        </div>
 
 
     </div>
 
+    <div class="grid-100">
+    <ul class="minerals__container">
+  {% for letter in alphabet %}
+    <td><a href="{% url 'minerals:alphabet' letter %}"  >{{ letter }}</a></td>
+  {% endfor %}
+        </ul>
 
     {% block content %}{% endblock %}
 

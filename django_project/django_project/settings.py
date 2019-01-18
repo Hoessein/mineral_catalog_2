@@ -63,6 +63,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'minerals.context_processors.alphabet_grid',
+                'minerals.context_processors.search'
+
             ],
         },
     },
