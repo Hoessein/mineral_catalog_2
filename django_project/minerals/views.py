@@ -40,7 +40,6 @@ def alphabet(request, letter):
 
 
 def search_mineral(request):
-    form = forms.SearchForm(request.POST)
     query = request.GET.get('q')
     results = Mineral.objects.filter(name__icontains=query)
     return render(request, 'minerals/minerals_by_search.html', {'results': results, 'form': form})
