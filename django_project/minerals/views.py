@@ -42,12 +42,13 @@ def alphabet(request, letter):
 def search_mineral(request):
     query = request.GET.get('q')
     results = Mineral.objects.filter(name__icontains=query)
-    return render(request, 'minerals/minerals_by_search.html', {'results': results, 'form': form})
+    return render(request, 'minerals/minerals_by_search.html', {'results': results})
 
 
-# def group_mineral(request):
-#     groups = Mineral.objects.filter('g)
-#
-#
+def group_mineral(request):
+    return render(request, 'minerals/minerals_by_search.html', {'groups': groups})
+
+
+
 
 

@@ -8,6 +8,7 @@ urlpatterns = [
     path('detail/random/', views.random_mineral, name='random_mineral'),
     path('<str:letter>', views.alphabet, name='alphabet'),
     path('search/', views.search_mineral, name='search_mineral'),
+    path('', views.group_mineral, name='group_mineral'),
 
 ]
 

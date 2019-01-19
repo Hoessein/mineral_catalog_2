@@ -25,11 +25,16 @@
       </a>
       <p class="logo__text text-centered">Did you know that the study of minerals is called mineralogy?</p>
         <div>
-            <form method="GET" action="{% url 'minerals:search_mineral' %}">
-              {{ form.search_box }}
-              <input type="submit" name="" class="button" value="">
-            </form>
+ <form method="GET" action="{% url 'minerals:search_mineral' %}">
+  {{ form.as_p }}
+  <input type="submit" class="button">
+</form>
         </div>
+
+      {% for letter in groups %}
+           {{ letter.group }}
+      {% endfor %}
+
 
 
     </div>
