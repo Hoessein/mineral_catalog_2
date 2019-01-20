@@ -9,11 +9,11 @@ from . import forms
 
 def home(request):
     """Will show all the minerals on the homepage
-    renders index.html and stores all the objects to 'mineral' """
-    default_homepage_mineral = Mineral.objects.filter(name__istartswith='a')
+    renders list.html and stores all the objects to 'mineral' """
+    minerals = Mineral.objects.filter(name__istartswith='a')
     return render(request,
-                  'minerals/index.html',
-                  {'default_homepage_mineral': default_homepage_mineral}
+                  'minerals/list.html',
+                  {'minerals': minerals}
                   )
 
 
@@ -35,18 +35,19 @@ def random_mineral(request):
 
 def alphabet(request, letter):
     """something"""
-    mineral_by_letter = Mineral.objects.filter(name__istartswith=letter)
-    return render(request, 'minerals/minerals_by_letter.html', {'mineral_by_letter': mineral_by_letter})
+    minerals = Mineral.objects.filter(name__istartswith=letter)
+    return render(request, 'minerals/list.html', {'minerals': minerals})
 
 
 def search_mineral(request):
     query = request.GET.get('q')
-    results = Mineral.objects.filter(name__icontains=query)
-    return render(request, 'minerals/minerals_by_search.html', {'results': results})
+    minerals = Mineral.objects.filter(name__icontains=query)
+    return render(request, 'minerals/list.html', {'minerals': minerals})
 
 
-def group_mineral(request):
-    return render(request, 'minerals/minerals_by_search.html', {'groups': groups})
+def group_mineral(request, group_name):
+    minerals = Mineral.objects.filter(group__icontains=group_name)
+    return render(request, 'minerals/list.html', {'minerals': minerals})
 
 
 

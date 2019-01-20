@@ -14,8 +14,7 @@ def search(request):
 
 def group(request):
     groups = Mineral.objects.order_by().values('group').distinct()
-    # hondje = []
-    # for x in groups:
-    #     hondje.append(x)
-    # groupa = set(hondje)
-    return {'groups': groups}
+    group_list = []
+    for x in groups:
+        group_list.append(x)
+    return {'group_list': group_list}

@@ -30,19 +30,23 @@
   <input type="submit" class="button">
 </form>
         </div>
+        <ul class="list-group">
 
-      {% for letter in groups %}
-           {{ letter.group }}
+  {% for group in group_list %}
+        <li class="current" {% if group_name == group %}  {% endif %} >
+
+      <a href="{% url 'minerals:group_mineral' group_name=group.group %}">{{ group.group }}</a>
       {% endfor %}
+  </li>
+
+</ul>
 
 
-
-    </div>
 
     <div class="grid-100">
     <ul class="minerals__container">
   {% for letter in alphabet %}
-    <td><a href="{% url 'minerals:alphabet' letter %}"  >{{ letter }}</a></td>
+    <td><a href="{% url 'minerals:alphabet' letter=letter %}" >{{ letter }}</a></td>
   {% endfor %}
         </ul>
 
