@@ -90,7 +90,8 @@ class MineralsViewsTests(TestCase):
         self.assertContains(resp, 'Other')
 
     def test_alphabet_view(self):
-        resp = self.client.get(reverse('minerals:alphabet', kwargs={'letter': 'a'}))
+        """tests the alphabet view"""
+        resp = self.client.get(reverse('minerals:alphabet_mineral', kwargs={'letter': 'a'}))
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/list.html')
         self.assertContains(resp, self.mineral.name)
