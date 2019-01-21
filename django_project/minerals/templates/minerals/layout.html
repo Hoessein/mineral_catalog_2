@@ -1,6 +1,5 @@
 {% load static from staticfiles %}
 
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -12,7 +11,9 @@
   <link href='https://fonts.googleapis.com/css?family=Cousine' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{% static 'minerals/css/global.css' %}">
 </head>
+
 <body>
+
   <div class="bounds bounds--small">
     <div class="grid-100">
       <a href="{% url 'minerals:minerals_home' %}">
@@ -24,40 +25,46 @@
         <h1 class="logo__name text-centered">Macky's Minerals</h1>
       </a>
       <p class="logo__text text-centered">Did you know that the study of minerals is called mineralogy?</p>
-        <div>
- <form method="GET" action="{% url 'minerals:search_mineral' %}">
+    </div>
+
+<form method="GET" action="{% url 'minerals:search_mineral' %}">
   {{ form.as_p }}
   <input type="submit" class="button">
 </form>
-        </div>
-        <ul class="list-group">
 
-  {% for group in group_list %}
-        <li class="current" {% if group_name == group %}  {% endif %} >
 
-      <a href="{% url 'minerals:group_mineral' group_name=group.group %}">{{ group.group }}</a>
-      {% endfor %}
-  </li>
-
+<ul class="list-group" style="position: absolute; left: 300px;">
+  <h2> Group </h2>
+    {% for group in group_list %}
+      {% if group.group == group_name %}
+        <li>
+          <b><a href="{% url 'minerals:group_mineral' group_name=group.group %}">{{ group.group }}</a></b>
+        </li>
+      {% else %}
+        <li>
+        <a href="{% url 'minerals:group_mineral' group_name=group.group %}">{{ group.group }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
 </ul>
 
 
+<ul class="alphabet__container">
+  {% for char in alphabet %}
+    {% if char == letter %}
+      <b><a href="{% url 'minerals:alphabet_mineral' letter=char %}" >{{ char }} | </a></b>
+    {% else %}
+      <a href="{% url 'minerals:alphabet_mineral' letter=char %}" >{{ char }} | </a>
+    {% endif %}
+{% endfor %}
+</ul>
 
-    <div class="grid-100">
-    <ul class="minerals__container">
-  {% for letter in alphabet %}
-    <td><a href="{% url 'minerals:alphabet' letter=letter %}" >{{ letter }}</a></td>
-  {% endfor %}
-        </ul>
-
-    {% block content %}{% endblock %}
-
-</div>
-  <div class="minerals__random">
-        <a class="minerals__anchor" href="{% url 'minerals:random_mineral' %}">Show random mineral</a>
-
+{% block content %}{% endblock %}
   </div>
 
+  <div class="minerals__random">
+      <a class="minerals__anchor" href="{% url 'minerals:random_mineral' %}">Show random mineral</a>
+  </div>
 
 </body>
 </html>

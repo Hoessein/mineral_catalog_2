@@ -1,10 +1,7 @@
 from django.shortcuts import render, reverse
 from django.http import HttpResponseRedirect, Http404
-from django.db.models import Q
 
 from .models import Mineral
-
-from . import forms
 
 
 def home(request):
@@ -30,26 +27,23 @@ def mineral_detail(request, pk):
 def random_mineral(request):
     """"Gives back a random object"""
     random_mineral = Mineral.objects.order_by('?').first().pk
-    return HttpResponseRedirect(reverse('minerals:mineral_detail', args=(random_mineral,)))
+    return HttpResponseRedirect(reverse('minerals:mineral_detail', args=(random_mineral)))
 
 
 def alphabet(request, letter):
-    """something"""
+    """Shows list of minerals based on the first letter"""
     minerals = Mineral.objects.filter(name__istartswith=letter)
-    return render(request, 'minerals/list.html', {'minerals': minerals})
+    return render(request, 'minerals/list.html', {'minerals': minerals, 'letter': letter})
 
 
 def search_mineral(request):
+    """Shows list of minerals based on search value"""
     query = request.GET.get('q')
     minerals = Mineral.objects.filter(name__icontains=query)
     return render(request, 'minerals/list.html', {'minerals': minerals})
 
 
 def group_mineral(request, group_name):
+    """Shows list of minerals based on the group they belong to"""
     minerals = Mineral.objects.filter(group__icontains=group_name)
-    return render(request, 'minerals/list.html', {'minerals': minerals})
-
-
-
-
-
+    return render(request, 'minerals/list.html', {'minerals': minerals, 'group_name': group_name})

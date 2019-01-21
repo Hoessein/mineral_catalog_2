@@ -82,6 +82,7 @@ class MineralsViewsTests(TestCase):
         self.assertEqual(resp.status_code, 404)
 
     def test_group_view(self):
+        """tests the group view"""
         resp = self.client.get(reverse('minerals:group_mineral', kwargs={'group_name': self.mineral.group}))
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.mineral, resp.context['minerals'])
@@ -96,18 +97,12 @@ class MineralsViewsTests(TestCase):
         self.assertNotContains(resp, 'Zunyite')
 
     def test_search_view(self):
+        """tests the search view"""
         resp = self.client.get(reverse('minerals:search_mineral'), {'q': 'Abelsonite'})
         self.assertEqual(resp.status_code, 200)
         self.assertTemplateUsed(resp, 'minerals/list.html')
         self.assertContains(resp, self.mineral.name)
         self.assertNotContains(resp, 'Zunyite')
-
-    def test_random_detail_view(self):
-        """tests the random detail view"""
-        resp = self.client.get(reverse('minerals:random_mineral'))
-        self.assertRedirects(resp, '/detail/1/', status_code=302, target_status_code=200)
-
-
 
 
 
